@@ -61,11 +61,16 @@ function solution(input) {
   const data = input.split('\n').map(item => item.trim());
 
   const [N, ...arr] = data;
+  //   console.log(arr);
   let answer = [];
 
-  for (const item of arr) {
+  for (let i = 0; i < N; i++) {
+    //   for (let item in arr) {
+    const item = arr[i];
     let result = 'NO';
-    const words = item.split('');
+    // console.log(item);
+
+    const words = item.toString().trim().split('');
     const stack = new Stack();
 
     for (const word of words) {
@@ -85,6 +90,8 @@ function solution(input) {
     }
     console.log(result);
   }
+
+  //   }
 
   //   console.log(answer.join('\n'));
 
