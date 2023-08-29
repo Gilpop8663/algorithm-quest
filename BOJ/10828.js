@@ -1,8 +1,4 @@
-const fs = require('fs');
-
-const filePath = fs.readFileSync('/dev/stdin');
-
-const input = filePath.toString().trim();
+const input = require('fs').readFileSync(0, 'utf-8');
 
 class Stack {
   #arr = [];
@@ -73,8 +69,6 @@ function solution(input) {
   return answer.trim();
 }
 
-const output = solution(input);
-
 // test('예제1', () => {
 //   const input = `14
 // push 1
@@ -126,3 +120,5 @@ const output = solution(input);
 
 //   expect(solution(input)).toEqual(answer);
 // });
+
+const output = solution(input);
