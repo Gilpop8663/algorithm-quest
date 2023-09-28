@@ -1,4 +1,4 @@
-const input = require('fs').readFileSync(0, 'utf-8');
+// const input = require('fs').readFileSync(0, 'utf-8');
 
 class Queue {
   constructor(size) {
@@ -96,41 +96,41 @@ function solution(input) {
   return answer.join('\n');
 }
 
-// test('예제2', () => {
-//   const input = `15
-//   push 1
-//   push 2
-//   front
-//   back
-//   size
-//   empty
-//   pop
-//   pop
-//   pop
-//   size
-//   empty
-//   pop
-//   push 3
-//   empty
-//   front`;
+test('예제2', () => {
+  const input = `15
+  push 1
+  push 2
+  front
+  back
+  size
+  empty
+  pop
+  pop
+  pop
+  size
+  empty
+  pop
+  push 3
+  empty
+  front`;
 
-//   const answer = `1
-//   2
-//   2
-//   0
-//   1
-//   2
-//   -1
-//   0
-//   1
-//   -1
-//   0
-//   3`
-//     .split('\n')
-//     .map(item => item.trim())
-//     .join('\n');
+  const answer = `1
+  2
+  2
+  0
+  1
+  2
+  -1
+  0
+  1
+  -1
+  0
+  3`
+    .split('\n')
+    .map(item => item.trim())
+    .join('\n');
 
-//   expect(solution(input)).toEqual(answer);
-// });
+  expect(solution(input)).toEqual(answer);
+});
 
-const output = console.log(solution(input));
+// const output = console.log(solution(input));
