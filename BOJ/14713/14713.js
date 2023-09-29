@@ -1,5 +1,4 @@
-const input = require('fs').readFileSync(0, 'utf-8');
-
+const input = require('fs').readFileSync(0, 'utf-8').trim();
 class Queue {
   constructor(size) {
     const num = Number(size);
@@ -49,28 +48,8 @@ class Queue {
   }
 }
 
-const solution = (N, arr, words) => {
-  const allWordsLength = arr.reduce((sum, cur) => sum + cur.length, 0);
-  if (words.length !== allWordsLength) return false;
-
-  return words
-    .map(word => {
-      for (let i = 0; i < N; i++) {
-        if (arr[i] && arr[i].includes(word)) {
-          const str = arr[i].pop();
-          if (str === word) return true;
-        }
-      }
-      return false;
-    })
-    .every(x => x);
-};
-
-
-
-
 function birdSolution(input) {
-  const data = input.split('\n').map(item => item.trim());
+  const data = input.split('\n').map((item) => item.trim());
 
   const N = Number(data[0]);
 
@@ -94,12 +73,12 @@ function birdSolution(input) {
 
   const receiveList = data.at(-1).trim().split(' ');
 
-  // if (receiveList.length !== birdWord) {
-  //   return 'Impossible';
-  // }
+  if (receiveList.length !== birdWord) {
+    return 'Impossible';
+  }
 
   const answerFlag = receiveList
-    .map(item => {
+    .map((item) => {
       for (let i = 0; i < queueList.length; i++) {
         const queue = queueList[i];
 
@@ -111,15 +90,17 @@ function birdSolution(input) {
 
       return false;
     })
-    .every(x => x);
+    .every((x) => x);
 
-  // const isExistWord = queueList.some(queue => !queue.isEmpty());
+  const isExistWord = queueList.some((queue) => !queue.isEmpty());
 
-  // if (isExistWord) {
-  //   return 'Impossible';
-  // }
+  if (isExistWord) {
+    return 'Impossible';
+  }
 
   return answerFlag ? 'Possible' : 'Impossible';
 }
 
-// module.exports = birdSolution;
+const output = console.log(birdSolution(input));
+
+module.exports = birdSolution;
