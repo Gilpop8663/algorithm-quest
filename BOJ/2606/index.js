@@ -44,4 +44,4 @@ function virusDfsSolution(input) {
 
 const output = console.log(virusDfsSolution(input));
 
-module.exports = virusDfsSolution;
+// module.exports = virusDfsSolution;
