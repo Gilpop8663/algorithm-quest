@@ -1,43 +1,47 @@
-// const input = require('fs').readFileSync(0, 'utf-8').trim() ?? '';
+const input = require('fs').readFileSync(0, 'utf-8').trim() ?? '';
 
 function virusDfsSolution(input) {
-  let count = 1;
   const data = input.split('\n').map((item) => item.trim());
 
-  const [N, M, R] = data[0].split(' ').map((item) => Number(item));
+  const [N, M, ...info] = data;
 
   const arr = Array.from({ length: N + 1 }, () => []);
   const visited = Array(N + 1).fill(false);
   const answer = Array(N + 1).fill(0);
 
   const DFS = (n) => {
+    let count = 0;
+    const stack = [];
+    stack.push(n);
+
     visited[n] = true;
-    answer[n] = count;
-    count++;
 
-    for (let i = 0; i < arr[n].length; i++) {
-      const num = arr[n][i];
+    while (stack.length > 0) {
+      const poppedNum = stack.pop();
 
-      if (visited[num]) continue;
+      count++;
+      for (let i = 0; i < arr[poppedNum].length; i++) {
+        const num = arr[poppedNum][i];
 
-      DFS(num);
+        if (visited[num]) continue;
+        visited[num] = true;
+        stack.push(num);
+      }
     }
+
+    return count - 1;
   };
 
   for (let i = 0; i < M; i++) {
-    const [U, V] = data[i + 1].split(' ').map((item) => Number(item));
+    const [U, V] = info[i].split(' ').map((item) => Number(item));
 
     arr[U].push(V);
     arr[V].push(U);
   }
 
-  arr.forEach((item) => item.sort((a, b) => a - b));
-
-  DFS(R);
-
-  return answer.slice(1).join('\n');
+  return DFS(1);
 }
 
-// const output = console.log(virusDfsSolution(input));
+const output = console.log(virusDfsSolution(input));
 
 module.exports = virusDfsSolution;
