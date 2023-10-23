@@ -8,7 +8,7 @@ describe('예제', () => {
 
     const answer = `6`
       .split('\n')
-      .map(item => item.trim())
+      .map((item) => item.trim())
       .join('\n');
 
     expect(solution(input)).toEqual(answer);
@@ -19,9 +19,9 @@ describe('예제', () => {
     1 1
     3 3`;
 
-    const answer = '2'
+    const answer = `2`
       .split('\n')
-      .map(item => item.trim())
+      .map((item) => item.trim())
       .join('\n');
 
     expect(solution(input)).toEqual(answer);
