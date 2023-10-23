@@ -26,6 +26,25 @@ describe('예제', () => {
     expect(solution(input)).toEqual(answer);
   });
 
+  /**
+   * 1번
+   * b 1점
+   * ari 2점
+   * c 5점
+   * d 5점
+   *
+   * 2번
+   * a 4점
+   * b 5점
+   * c 2점
+   * d 1점
+   *
+   * 합계
+   * a 6점
+   * b 5점
+   * c 7점
+   * d 6점
+   */
   test('예제2', () => {
     const input = `2 4 10
     ari betty cugi dori
@@ -44,6 +63,77 @@ describe('예제', () => {
     betty
     dori
     cugi`
+      .split('\n')
+      .map((item) => item.trim())
+      .join('\n');
+
+    expect(solution(input)).toEqual(answer);
+  });
+
+  test('예제3', () => {
+    const input = `1 4 1
+    ari dd bb cc
+    1 10:00 ari wrong`;
+
+    const answer = `ari
+    bb
+    cc
+    dd`
+      .split('\n')
+      .map((item) => item.trim())
+      .join('\n');
+
+    expect(solution(input)).toEqual(answer);
+  });
+
+  test('예제4', () => {
+    const input = `3 4 4
+    ari dd bb cc
+    1 10:00 ari wrong
+    1 10:01 ari solve
+    2 10:00 bb wrong
+    2 10:00 bb solve
+    `;
+
+    const answer = `ari
+    bb
+    cc
+    dd`
+      .split('\n')
+      .map((item) => item.trim())
+      .join('\n');
+
+    expect(solution(input)).toEqual(answer);
+  });
+
+  test('예제5', () => {
+    const input = `3 4 4
+    bb dd ari cc
+    1 10:00 bb wrong
+    1 10:00 bb solve
+    1 10:00 ari wrong
+    1 10:00 ari solve
+    `;
+
+    const answer = `ari
+    bb
+    cc
+    dd`
+      .split('\n')
+      .map((item) => item.trim())
+      .join('\n');
+
+    expect(solution(input)).toEqual(answer);
+  });
+
+  test('예제5', () => {
+    const input = `3 4 0
+    1 2 3 4`;
+
+    const answer = `1
+    2
+    3
+    4`
       .split('\n')
       .map((item) => item.trim())
       .join('\n');
