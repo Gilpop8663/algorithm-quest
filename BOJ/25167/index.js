@@ -23,7 +23,7 @@ function solution(input) {
       name: item,
       time: INIT_TIME,
       isSolved: false,
-      score: nameArr.length + 1,
+      score: M + 1,
     };
   });
 
@@ -47,14 +47,14 @@ function solution(input) {
     if (findData.isSolved === true) continue;
 
     if (isSolve === 'solve' && !mapData.has(key)) {
-      findData.score = nameArr.length + 1;
+      findData.score = M + 1;
       findData.isSolved = true;
       continue;
     }
 
     if (isSolve === 'wrong' && !mapData.has(key)) {
       mapData.set(key, time);
-      findData.score = nameArr.length;
+      findData.score = M;
       continue;
     }
 
@@ -78,9 +78,11 @@ function solution(input) {
   for (let i = 1; i <= N; i++) {
     const findData = allNameData[i];
 
-    for (let j = 0; j < Math.min(M, 3); j++) {
+    let grade = 1;
+
+    for (let j = 0; j < M; j++) {
       if (findData[j].time !== INIT_TIME) {
-        findData[j].score = j + 1;
+        findData[j].score = grade++;
       }
     }
   }
@@ -107,7 +109,10 @@ function solution(input) {
     return itemA.name.localeCompare(itemB.name);
   });
 
-  return answerData.map((item) => item.name).join('\n');
+  return answerData
+    .map((item) => item.name)
+    .join('\n')
+    .trim();
 }
 
 const output = console.log(solution(input));

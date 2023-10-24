@@ -140,4 +140,26 @@ describe('예제', () => {
 
     expect(solution(input)).toEqual(answer);
   });
+  test('예제6', () => {
+    const input = `1 4 8
+    aa bb cc dd
+    1 10:00 aa wrong
+    1 10:01 aa solve
+    1 10:00 bb wrong
+    1 10:02 bb solve
+    1 10:00 cc wrong
+    1 10:03 cc solve
+    1 10:00 dd wrong
+    1 10:04 dd solve`;
+
+    const answer = `aa
+    bb
+    cc
+    dd`
+      .split('\n')
+      .map((item) => item.trim())
+      .join('\n');
+
+    expect(solution(input)).toEqual(answer);
+  });
 });
