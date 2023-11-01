@@ -1,4 +1,4 @@
-// const input = require('fs').readFileSync(0, 'utf-8').trim();
+const input = require('fs').readFileSync(0, 'utf-8').trim();
 
 /**
  *
@@ -10,46 +10,87 @@ function solution(input) {
   const str = input.trim();
   const stack = [];
 
+  let answer = '(';
+
+  let plusMinus = [];
+
+  let realAnswer = '';
+
+  const tmp = ['+', '-', '*', '/'];
+
   for (let i = 0; i < str.length; i++) {
-    stack.push(str[i]);
+    const word = str[i];
+    if (tmp.includes(word)) {
+      if (word === '*' || word === '/') {
+        while (stack.length !== 0) {
+          const top = stack[stack.length - 1];
+          if (top === '+' || top === '-' || top === '(') break;
+
+          const strr = stack.pop();
+
+          realAnswer += strr;
+        }
+
+        stack.push(word);
+        continue;
+      }
+
+      if (word === '+' || word === '-') {
+        while (stack.length !== 0) {
+          const top = stack[stack.length - 1];
+          if (top === '(') break;
+
+          const strr = stack.pop();
+
+          realAnswer += strr;
+        }
+
+        stack.push(word);
+        continue;
+      }
+
+      // ABC*
+      //
+      continue;
+    }
+
+    if (word === '(') {
+      stack.push(word);
+
+      continue;
+    }
+
+    if (word === ')') {
+      // console.log(stack, realAnswer);
+      while (1) {
+        const tmppp = stack.pop();
+        // console.log(tmppp);
+
+        if (tmppp === '(') {
+          break;
+        }
+
+        realAnswer += tmppp;
+      }
+
+      continue;
+    }
+
+    realAnswer += word;
   }
-  const tmp = ['+', '-', '*', '/', '(', ')'];
-
-  const word = [];
-  const plus = [];
-
-  let isFlag = false;
 
   while (stack.length !== 0) {
-    const tmpStr = stack.pop();
+    const strr = stack.pop();
 
-    if (tmpStr === ')') {
-      isFlag = !isFlag;
-      continue;
-    }
-
-    if (tmpStr === '(') {
-      isFlag = !isFlag;
-      continue;
-    }
-
-    if (tmp.includes(tmpStr)) {
-      if (isFlag) {
-        plus.unshift(tmpStr);
-      } else {
-        plus.push(tmpStr);
-      }
-      continue;
-    }
-
-    word.push(tmpStr);
+    if (strr === '(' || strr === ')') continue;
+    realAnswer += strr;
   }
 
-  console.log(word, plus);
+  // console.log(realAnswer, stack);
 
-  return answer;
+  return realAnswer.trim();
 }
 
-// const output = console.log(solution(input));
+const output = console.log(solution(input));
 
-module.exports = solution;
+// module.exports = solution;
