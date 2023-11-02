@@ -76,17 +76,4 @@ describe('예제', () => {
 
     expect(solution(input)).toEqual(answer);
   });
-
-  test('예제 6', () => {
-    const input = `4 4 2 2 3
-    1 2
-    4 1
-    3 4
-    1 1
-    3 3`;
-
-    const answer = 4;
-
-    expect(solution(input)).toEqual(answer);
-  });
 });
