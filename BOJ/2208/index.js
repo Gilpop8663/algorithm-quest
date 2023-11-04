@@ -10,6 +10,8 @@
  * 1. 최대 길이 순열을 구한다.
  * 2. 근데 길이가 M 이상인 것만 구한다.
  *
+ * 10,000,000,000
+ *
  */
 function solution(input) {
   const [info, ...data] = input.split('\n').map((item) => item.trim());
