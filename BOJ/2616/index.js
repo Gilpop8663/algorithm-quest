@@ -25,14 +25,8 @@ function solution(input) {
     dp[i + 1] = dp[i] + arr[i];
   }
 
-  for (let i = 0; i < N - K + 1; i++) {
-    for (let j = i + K; j < N - K + 1; j++) {
-      for (let k = j + K; k < N - K + 1; k++) {
-        // console.log(i, j, k);
-        const num = dp[i + K] - dp[i] + dp[j + K] - dp[j] + dp[k + K] - dp[k];
-        answer = Math.max(num, answer);
-      }
-    }
+  for (let i = 0; i < 3; i++) {
+    dp[i][j] = 1;
   }
 
   for (let i = 0; i < N - K + 1; i++) {}
