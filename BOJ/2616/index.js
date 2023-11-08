@@ -9,28 +9,31 @@ function solution(input) {
 
   const K = +data[1];
 
-  const dp = Array(N + 1).fill(0);
+  const dp = Array.from({ length: 4 }, () =>
+    Array.from({ length: N }, () => 0)
+  );
 
-  for (let i = 0; i < N; i++) {
-    dp[i + 1] = dp[i] + arr[i];
-  }
-
-  const visited = Array.from({ length: N + 1 }, () => false);
+  const sum = Array.from({ length: N + 1 }, () => 0);
 
   let count = 3;
 
   let answer = 0;
 
   for (let i = 0; i < N; i++) {
-    dp[i + 1] = dp[i] + arr[i];
+    sum[i + 1] = sum[i] + arr[i];
   }
 
   for (let i = 0; i < 3; i++) {
-    dp[i][j] = 1;
+    for (let j = K; j <= N; j++) {
+      if (i === 0) {
+        dp[i][j] = Math.max(dp[i][j - 1], sum[j] - sum[j - K]);
+        continue;
+      }
+      dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j - K] + sum[j] - sum[j - K]);
+    }
   }
 
-  for (let i = 0; i < N - K + 1; i++) {}
-
+  answer = dp[2][N];
   // console.log(dp, visited);
 
   return answer;
