@@ -1,4 +1,4 @@
-// const input = require('fs').readFileSync(0, 'utf-8').trim();
+const input = require("fs").readFileSync(0, "utf-8").trim();
 
 /**
  *
@@ -14,31 +14,40 @@
  *
  */
 function solution(input) {
-  const [info, ...data] = input.split('\n').map((item) => item.trim());
+  const [info, ...data] = input.split("\n").map((item) => item.trim());
 
-  const [N, M] = info.split(' ').map((item) => +item);
+  const [N, M] = info.split(" ").map((item) => +item);
 
   const arr = data.map((item) => +item);
 
   const dp = Array.from({ length: N }, () => -20000);
 
-  dp[0] = arr[0];
+  const sum = Array.from({ length: N + 1 }, () => 0);
 
-  for (let i = 1; i < N; i++) {
-    const num = Math.max(arr[i], dp[i - 1] + arr[i]);
-    dp[i] = Math.max(dp[i], num);
+  for (let i = 0; i < N; i++) {
+    sum[i + 1] = sum[i] + arr[i];
   }
 
-  let str = '';
-  for (let i = 0; i < N; i++) {
-    str += dp[i] + ' ';
+  let sum1 = 0,
+    sum2 = 0,
+    answer = 0;
+  for (let i = M + 1; i <= N; i++) {
+    sum2 = Math.min(sum[i - M], sum2);
+    answer = Math.max(answer, sum[i] - sum2);
+    // console.log(sum2, answer, sum[i]);
+  }
+
+  let str = "";
+  for (let i = 1; i <= N; i++) {
+    str += sum[i] + " ";
     // console.log(dp[i]);
   }
-  console.log(str);
+
+  // console.log(str);
 
   return answer;
 }
 
-// const output = console.log(solution(input));
+const output = console.log(solution(input));
 
-module.exports = solution;
+// module.exports = solution;
